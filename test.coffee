@@ -1,3 +1,4 @@
+
 render = $ID 'render'
 resistor = new Resistor
  x:10
