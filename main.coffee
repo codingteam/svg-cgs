@@ -34,3 +34,10 @@ class Resistor extends Base
     @place.append @body
   renderTo: (@place)->
     do @render
+
+class Stream extends Base
+  @Node: class Node extends Base
+    constructor: ->
+  constructor: ->
+  
+
