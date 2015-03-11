@@ -1,3 +1,4 @@
+
 class Resistor extends Base
   @defaults:
     x: 0
@@ -6,7 +7,6 @@ class Resistor extends Base
     super
     @body = $svg 'g'
 @body.attr
-      fill: 'red'
       fill: 'red'
       srtoke: 'black'
       'stroke-width': 1
@@ -34,7 +34,3 @@ class Resistor extends Base
     @place.append @body
   renderTo: (@place)->
     do @render
-
-->
-    do @render
-
