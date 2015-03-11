@@ -5,5 +5,7 @@ class Resistor extends Base
   constructor: (defs)->
     super
     alert "test"
-  render:->
-  renderTo: (place)->
+  render: ->
+    @place.append @body
+  renderTo: (@place)->
+    do @render

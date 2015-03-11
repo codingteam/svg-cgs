@@ -8,3 +8,4 @@ node_modules/
 tmp
 vendor/
 all.js
+all.css
