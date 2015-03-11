@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="20mm" height="10mm">
+  <desc>Resistor symbol with mentioned rated power 5 W according to GOST 2.728-74.</desc>
+  <g fill="white" stroke="black" stroke-width="1pt">
+    <rect x="5mm" y="3mm" width="10mm" height="4mm" />
+  </g>
+  <g fill="none" stroke="black" stroke-width="1pt" >
+    <line x1="0mm"  y1="5mm" x2="5mm"  y2="5mm" />
+    <line x1="15mm" y1="5mm" x2="20mm" y2="5mm" />
+    <line x1="9.2mm" y1="3.8mm" x2="10mm"   y2="6.2mm" />
+    <line x1="10mm"  y1="6.2mm" x2="10.8mm" y2="3.8mm" />
+  </g>
+</svg>

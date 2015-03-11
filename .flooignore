@@ -1,0 +1,10 @@
+#*
+*.o
+*.pyc
+*~
+.git/
+extern/
+node_modules/
+tmp
+vendor/
+all.js

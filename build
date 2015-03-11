@@ -1,6 +1,6 @@
 
-#cp test.css all.css
-#autoprefixer all.css
+cat svgwm/test.css test.css > all.css
+autoprefixer all.css
 cat\
  svgwm/xpath-tools/core.coffee\
  svgwm/xpath-tools/events.coffee\
@@ -9,5 +9,6 @@ cat\
  svgwm/xpath-tools/ajax.coffee\
  svgwm/main.coffee\
  main.coffee\
+ test.coffee\
  > all.coffee
 coffee -c --bare all.coffee

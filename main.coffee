@@ -1,6 +1,9 @@
-class Diod extends Base
+class Resistor extends Base
   @defaults:
-    maxWidth: 10
-    minWidth: 8
+    x: 0
+    y: 0
   constructor: (defs)->
+    super
     alert "test"
+  render:->
+  renderTo: (place)->
