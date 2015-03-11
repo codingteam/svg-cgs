@@ -8,7 +8,7 @@ class Resistor extends Base
     @body = $svg 'g'
     @body.attr
       fill: 'red'
-      srtoke: 'black'
+      stroke: 'black'
       'stroke-width': 1
       transform:"translate(#{@x} #{@y})"
     rect = $svg 'rect'
