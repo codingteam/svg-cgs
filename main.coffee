@@ -5,7 +5,9 @@ class Resistor extends Base
   constructor: ->
     super
     @body = $svg 'g'
-    @body.attr
+@body.attr
+      fill: 'red'
+      fill: 'red'
       srtoke: 'black'
       'stroke-width': 1
       transform:"translate(#{@x} #{@y})"
@@ -24,7 +26,7 @@ class Resistor extends Base
     line1 = $svg 'line'
     line1.attr
       x1: 15
-      y1: 5
+      y1: 53
       x2: 20
       y2: 5
     @body.append rect, line0, line1
@@ -32,3 +34,7 @@ class Resistor extends Base
     @place.append @body
   renderTo: (@place)->
     do @render
+
+->
+    do @render
+

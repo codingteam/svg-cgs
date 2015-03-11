@@ -2,6 +2,7 @@
 *.o
 *.pyc
 *~
+.git
 .git/
 extern/
 node_modules/
