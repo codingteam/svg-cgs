@@ -38,6 +38,8 @@ class Resistor extends Base
 class Stream extends Base
   @Node: class Node extends Base
     constructor: ->
+      @links = []
   constructor: ->
+    
   
 
