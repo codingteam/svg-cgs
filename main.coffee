@@ -31,8 +31,8 @@ class Resistor extends Base
       y2: 5
     @body.append rect, line0, line1
     @nodes =
-      fst: new StreamNode {x: @x, y: @y + 5}, Stream
-      snd: new StreamNode {x: @x + 20, y: @y + 5}, Stream
+      fst: new StreamNode {}, Stream
+      snd: new StreamNode {}, Stream
   redraw: ->
     @nodes.fst.x = @x
     @nodes.fst.y = @y + 5
@@ -41,8 +41,6 @@ class Resistor extends Base
     @
   render: ->
     @place.append @body
-    do @nodes.fst.redraw
-    do @nodes.snd.redraw
     @
   renderTo: (@place)->
     do @redraw
@@ -74,7 +72,6 @@ class Stream extends Base
     @destroyed = true
     @
   redraw:->
-    $L "Stream", @
     @line.attr
       x1: @fst.x
       y1: @fst.y
@@ -100,7 +97,6 @@ class StreamNode extends Base
   connect: (node)->
     new Stream @, node
   redraw: ->
-    $L "Node", @
     @circle.attr
       cx: @x
       cy: @y
