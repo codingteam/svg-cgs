@@ -13,26 +13,39 @@ class Resistor extends Base
       transform:"translate(#{@x} #{@y})"
     rect = $svg 'rect'
     rect.attr
-      x: "5mm"#5
-      y: "3mm"#3
-      width: "10mm"#10
-      height: "4mm"#4
+      x: 5
+      y: 3
+      width: 10
+      height: 4
     line0 = $svg 'line'
     line0.attr
       x1: 0
-      y1: "5mm"#5
-      x2: "5mm"#5
-      y2: "5mm"#5
+      y1: 5
+      x2: 5
+      y2: 5
     line1 = $svg 'line'
     line1.attr
-      x1: "15mm"#15
-      y1: "5mm"#5
-      x2: "20mm"#20
-      y2: "5mm"#5
+      x1: 15
+      y1: 5
+      x2: 20
+      y2: 5
     @body.append rect, line0, line1
+    @nodes =
+      fst: new StreamNode {}, Stream
+      snd: new StreamNode {}, Stream
+  redraw: ->
+    @nodes.fst.x = @x
+    @nodes.fst.y = @y + 5
+    @nodes.snd.x = @x + 20
+    @nodes.snd.y = @y + 5
+    @
   render: ->
     @place.append @body
+    @
   renderTo: (@place)->
+    @nodes.fst.renderTo @place
+    @nodes.snd.renderTo @place
+    do @redraw
     do @render
 
 class Stream extends Base
@@ -41,18 +54,53 @@ class Stream extends Base
     __proto__: @::
     constructor: @
   constructor: (@fst, @snd)->
-    throw new @constructor.Error if (@fst.constructor != @snd.constructor) or (not @fst instanceof StreamNode) or not (@snd instanceof StreamNode) or (@fst == @snd)
+    #TODO напридумывать разных типов ошибок
+    throw new @constructor.Error if (@fst.constructor != @snd.constructor)
+    throw new @constructor.Error if (not @fst instanceof StreamNode) or not (@snd instanceof StreamNode)
+    throw new @constructor.Error if (@fst == @snd)
+    throw new @constructor.Error if @fst.streams.length and (@fst.streams[0].constructor != @constructor)
     @fst.push @
     @snd.push @
+    @body = $svg 'g'
+    @line = $svg 'line'
+    @body.append @line
   destroy: ->
-    @fst.streams = @fst.streams.filter (stream)=> stream == @ #TODO тут можно оптимизировать, но выиграш будет несущественен
+    @fst.streams = @fst.streams.filter (stream)=> stream == @ #TODO тут можно оптимизировать, но выигрыш будет несущественен
     @snd.streams = @snd.streams.filter (stream)=> stream == @
+    @destroyed = true
     @
-    
+  redraw:->
+    @line.attr
+      x1: @fst.x
+      y1: @fst.y
+      x2: @snd.x
+      y2: @snd.y
+  render: ->
+    @place.append @body
+    @
+  renderTo: (@place)->
+    do @redraw
+    do @render
 
 class StreamNode extends Base
-  constructor: (StreamType)->
+  @defaults:
+    x:0
+    y:0
+  constructor: (config, StreamType)->
+    super
     @streams = []
     @streams.push StreamType.getDefault() if StreamType?
+    @circle = $svg 'circle'
+    @circle.attr r: 3
   connect: (node)->
     new Stream @, node
+  redraw: ->
+    @circle.attr
+      x: @x
+      y: @y
+  render: ->
+    @place.append @circle
+    @
+  renderTo: (@place)->
+    do @redraw
+    do @render
