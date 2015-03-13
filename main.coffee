@@ -36,10 +36,23 @@ class Resistor extends Base
     do @render
 
 class Stream extends Base
-  @Node: class Node extends Base
-    constructor: ->
-      @links = []
-  constructor: ->
+  @Erorr: class
+  @getDefault: ->#FEATURE конструируируем объект не через new
+    __proto__: @::
+    constructor: @
+  constructor: (@fst, @snd)->
+    throw new @constructor.Error if (@fst.constructor != @snd.constructor) or (not @fst instanceof StreamNode) or not (@snd instanceof StreamNode) or (@fst == @snd)
+    @fst.push @
+    @snd.push @
+  destroy: ->
+    @fst.streams = @fst.streams.filter (stream)=> stream == @ #TODO тут можно оптимизировать, но выиграш будет несущественен
+    @snd.streams = @snd.streams.filter (stream)=> stream == @
+    @
     
-  
 
+class StreamNode extends Base
+  constructor: (StreamType)->
+    @streams = []
+    @streams.push StreamType.getDefault() if StreamType?
+  connect: (node)->
+    new Stream @, node
