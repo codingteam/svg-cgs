@@ -34,7 +34,6 @@ class Resistor extends Base
       fst: new StreamNode {x: @x, y: @y + 5}, Stream
       snd: new StreamNode {x: @x + 20, y: @y + 5}, Stream
   redraw: ->
-    $L "Resistor", @
     @nodes.fst.x = @x
     @nodes.fst.y = @y + 5
     @nodes.snd.x = @x + 20
