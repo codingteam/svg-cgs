@@ -31,9 +31,10 @@ class Resistor extends Base
       y2: 5
     @body.append rect, line0, line1
     @nodes =
-      fst: new StreamNode {}, Stream
-      snd: new StreamNode {}, Stream
+      fst: new StreamNode {x: @x, y: @y + 5}, Stream
+      snd: new StreamNode {x: @x + 20, y: @y + 5}, Stream
   redraw: ->
+    $L "Resistor", @
     @nodes.fst.x = @x
     @nodes.fst.y = @y + 5
     @nodes.snd.x = @x + 20
@@ -43,9 +44,9 @@ class Resistor extends Base
     @place.append @body
     @
   renderTo: (@place)->
+    do @redraw
     @nodes.fst.renderTo @place
     @nodes.snd.renderTo @place
-    do @redraw
     do @render
 
 class Stream extends Base
@@ -63,6 +64,8 @@ class Stream extends Base
     @snd.streams.push @
     @body = $svg 'g'
     @line = $svg 'line'
+    @line.attr
+      'stroke-width': 1
     @body.append @line
   destroy: ->
     @fst.streams = @fst.streams.filter (stream)=> stream == @ #TODO тут можно оптимизировать, но выигрыш будет несущественен
@@ -70,6 +73,7 @@ class Stream extends Base
     @destroyed = true
     @
   redraw:->
+    $L "Stream", @
     @line.attr
       x1: @fst.x
       y1: @fst.y
@@ -95,6 +99,7 @@ class StreamNode extends Base
   connect: (node)->
     new Stream @, node
   redraw: ->
+    $L "Node", @
     @circle.attr
       x: @x
       y: @y

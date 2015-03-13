@@ -3,7 +3,7 @@ $R ->
   render = $ID 'render'
   resistor1 = new Resistor
     x:10
-    y:15
+    y:55
   resistor2 = new Resistor
     x:50
     y:25
