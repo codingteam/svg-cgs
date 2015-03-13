@@ -42,6 +42,8 @@ class Resistor extends Base
     @
   render: ->
     @place.append @body
+    do @nodes.fst.redraw
+    do @nodes.snd.redraw
     @
   renderTo: (@place)->
     do @redraw
@@ -101,8 +103,8 @@ class StreamNode extends Base
   redraw: ->
     $L "Node", @
     @circle.attr
-      x: @x
-      y: @y
+      cx: @x
+      cy: @y
   render: ->
     @place.append @circle
     @
