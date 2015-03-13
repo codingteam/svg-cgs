@@ -65,6 +65,7 @@ class Stream extends Base
     @line = $svg 'line'
     @line.attr
       'stroke-width': 1
+      stroke: 'black'
     @body.append @line
   destroy: ->
     @fst.streams = @fst.streams.filter (stream)=> stream == @ #TODO тут можно оптимизировать, но выигрыш будет несущественен
