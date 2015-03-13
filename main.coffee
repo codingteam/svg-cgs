@@ -59,8 +59,8 @@ class Stream extends Base
     throw new @constructor.Error if (not @fst instanceof StreamNode) or not (@snd instanceof StreamNode)
     throw new @constructor.Error if (@fst == @snd)
     throw new @constructor.Error if @fst.streams.length and (@fst.streams[0].constructor != @constructor)
-    @fst.push @
-    @snd.push @
+    @fst.streams.push @
+    @snd.streams.push @
     @body = $svg 'g'
     @line = $svg 'line'
     @body.append @line
