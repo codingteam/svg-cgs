@@ -1,6 +1,8 @@
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" width="20mm" height="10mm">
+  <node xmlns="CGS" x="0" y="5mm" type="wire"/>
+  <node xmlns="CGS" x="20mm" y="5mm" type="wire"/>
   <desc>Resistor</desc>
   <g fill="white" stroke="black" stroke-width="1pt">
     <rect x="5mm" y="3mm" width="10mm" height="4mm" />
