@@ -23,5 +23,5 @@ $R ->
     .then ->
       resistor3 = new Devices.resistor
         x: 10
-        y: 10
+        y: 30
       resistor3.renderTo render
