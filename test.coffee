@@ -14,3 +14,9 @@ $R ->
     wire
   ].forEach (widget)-> widget.renderTo render
   do wire.destroy
+  
+  $XHR.get('img/resistor.svg')
+    .then (data)->
+      (new DOMParser).parseFromString data,"text/xml"
+    .then (xml)->
+      
