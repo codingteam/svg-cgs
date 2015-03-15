@@ -8,7 +8,10 @@ cat\
  svgwm/xpath-tools/off.coffee\
  svgwm/xpath-tools/ajax.coffee\
  svgwm/main.coffee\
- main.coffee\
- test.coffee\
  > all.coffee
+
+coffee -c --bare patch.coffee
+coffee -c --bare main.coffee
+coffee -c --bare test.coffee
+
 coffee -c --bare all.coffee

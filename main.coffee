@@ -6,8 +6,7 @@ $X.Class.attr = (attrs)-> #TODO протестировать этот метод
 		for name, value of attrs
 		  splited = name.split ':'
 		  if splited.length == 2
-		    ns = splited[0]
-		    name = name[1]
+		    [ns, name] = splited
 		    try
 		      if value?
 		        item.setAttributeNS ns, name, value
@@ -70,6 +69,7 @@ class Resistor extends Base
     @nodes.snd.renderTo @place
     do @render
 
+ 
 class Stream extends Base
   @Erorr: class
   @getDefault: ->#FEATURE конструируируем объект не через new
@@ -129,6 +129,7 @@ class StreamNode extends Base
   renderTo: (@place)->
     do @redraw
     do @render
+  
 
 Devices = {}
 StreamTypes =
