@@ -13,3 +13,4 @@ $R ->
     resistor2
     wire
   ].forEach (widget)-> widget.renderTo render
+  do wire.destroy

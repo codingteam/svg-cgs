@@ -1,25 +1,6 @@
 
 $X.defaults.ns.cgs = "CGS" #FEATURE здесь задаются префиксы пространств имён
 
-$X.Class.attr = (attrs)-> #TODO протестировать этот метод, а потом перенести в xpath-tools
-	for item in @ when item instanceof Element
-		for name, value of attrs
-		  splited = name.split ':'
-		  if splited.length == 2
-		    [ns, name] = splited
-		    try
-		      if value?
-		        item.setAttributeNS ns, name, value
-		      else
-		        item.removeAttributeNS ns, name
-  		else
-  		  try
-  		    if value?
-  		      item.setAttribute name, value
-  		    else
-  		      item.removeAttribute name
-	@
-
 class Resistor extends Base
   @defaults:
     x: 0
@@ -92,6 +73,7 @@ class Stream extends Base
   destroy: ->
     @fst.streams = @fst.streams.filter (stream)=> stream == @ #TODO тут можно оптимизировать, но выигрыш будет несущественен
     @snd.streams = @snd.streams.filter (stream)=> stream == @
+    @place[0].removeChild @body[0]
     @destroyed = true
     @
   redraw:->
