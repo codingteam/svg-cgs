@@ -8,8 +8,17 @@ $X.Class.attr = (attrs)-> #TODO протестировать этот метод
 		  if splited.length == 2
 		    ns = splited[0]
 		    name = name[1]
-		    try if value? then item.setAttributeNS ns, name, value else item.removeAttributeNS ns, name
-  			else try if value? then item.setAttribute name, value else item.removeAttribute name
+		    try
+		      if value?
+		        item.setAttributeNS ns, name, value
+		      else
+		        item.removeAttributeNS ns, name
+  		else
+  		  try
+  		    if value?
+  		      item.setAttribute name, value
+  		    else
+  		      item.removeAttribute name
 	@
 
 class Resistor extends Base
