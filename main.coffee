@@ -130,16 +130,22 @@ class StreamNode extends Base
     do @redraw
     do @render
 
+Devices = {}
+StreamTypes =
+  wire: Stream
+
 class AbstractDevice extends Base
   constructor: ->
     super
     @nodes = {}
+    do @initNodes
     @body = $svg 'use'
     @body.attr
       x: @x
       y: @y
   redraw: ->
     @body.attr 'xlink:href': "##{@ref}"
+    do apdateNodes
     @
   render: ->
     @place.append @body
@@ -150,7 +156,27 @@ class AbstractDevice extends Base
       node.renderTo @place
     do @render
     
+
 DeviceFromXML = (xml)->
   xml = $A xml
+  #TODO придумать как создавать <svg:defs/> в документе если его нет
+  defs = $X '(//svg:defs)[1]'
+  image = xml.xpath('/*/svg:*[1]').map (e)-> do e.clone #TODO ВНЕЗАПНО понял что клонирование происходи не рекурсивно, в общем это дело надо исправить
+  id = do Utils.generateID
+  image.attr id: id
+  defs.append image
+  nodes = xml.xpath('//*/cgs:node').map (e)->
+    x: parseFloat e.getAttribute 'x'
+    y: parseFloat e.getAttribute 'y'
+    type: StreamTypes[e.getAttribute 'type']
+    name: e.getAttribute 'name'
   class Device extends AbstractDevice
-    
+    ref: id
+    initNodes: ->
+      for node in nodes
+        @nodes[node.name] = new StreamNode {}, node.type
+      return
+    apdateNodes: ->
+      for node in nodes
+        @nodes[node.name].x = @x + node.x
+        @nodes[node.name].y = @y + node.y
