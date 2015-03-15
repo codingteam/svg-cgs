@@ -1,4 +1,26 @@
 
+$X.defaults.ns.cgs = "CGS" #FEATURE здесь задаются префиксы пространств имён
+
+$X.Class.attr = (attrs)-> #TODO протестировать этот метод, а потом перенести в xpath-tools
+	for item in @ when item instanceof Element
+		for name, value of attrs
+		  splited = name.split ':'
+		  if splited.length == 2
+		    ns = splited[0]
+		    name = name[1]
+			  try
+				  if value?
+					  item.setAttributeNS ns, name, value
+			  	else
+				  	item.removeAttributeNS ns, name
+		  else  
+			  try
+				  if value?
+					  item.setAttribute name, value
+			  	else
+				  	item.removeAttribute name
+	@
+
 class Resistor extends Base
   @defaults:
     x: 0
@@ -10,7 +32,7 @@ class Resistor extends Base
       fill: 'red'
       stroke: 'black'
       'stroke-width': 1
-      transform:"translate(#{@x} #{@y})"
+      transform: "translate(#{@x} #{@y})"
     rect = $svg 'rect'
     rect.attr
       x: 5
@@ -107,3 +129,55 @@ class StreamNode extends Base
   renderTo: (@place)->
     do @redraw
     do @render
+
+Devices = {}
+StreamTypes =
+  wire: Stream
+
+class AbstractDevice extends Base
+  constructor: ->
+    super
+    @nodes = {}
+    do @initNodes
+    @body = $svg 'use'
+    @body.attr
+      x: @x
+      y: @y
+  redraw: ->
+    @body.attr 'xlink:href': "##{@ref}"
+    do apdateNodes
+    @
+  render: ->
+    @place.append @body
+    @
+  renderTo: (@place)->
+    do @redraw
+    for node of @nodes
+      node.renderTo @place
+    do @render
+    
+DeviceFromXML = (xml)->
+  xml = $A xml
+  #TODO придумать как создавать <svg:defs/> в документе если его нет
+  defs = $X '(//svg:defs)[1]'
+  image = xml.xpath('/*/svg:*[1]').map (e)-> do e.clone #TODO ВНЕЗАПНО понял что клонирование происходи не рекурсивно, в общем это дело надо исправить
+  id = do Utils.generateID
+  image.attr id: id
+  defs.append image
+  nodes = xml.xpath('//*/cgs:node').map (e)->
+    x: parseFloat e.getAttribute 'x'
+    y: parseFloat e.getAttribute 'y'
+    type: StreamTypes[e.getAttribute 'type']
+    name: e.getAttribute 'name'
+  class Device extends AbstractDevice
+    ref: id
+    initNodes: ->
+      for node in nodes
+        @nodes[node.name] = new StreamNode {}, node.type
+      return
+    apdateNodes: ->
+      for node in nodes
+        @nodes[node.name].x = @x + node.x
+        @nodes[node.name].y = @y + node.y
+      
+    
