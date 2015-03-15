@@ -128,7 +128,7 @@ class AbstractDevice extends Base
       y: @y
   redraw: ->
     @body.attr 'xlink:href': "##{@ref}"
-    do apdateNodes
+    do @apdateNodes
     @
   render: ->
     @place.append @body
@@ -144,7 +144,7 @@ DeviceFromXML = (xml)->
   xml = $A xml
   #TODO придумать как создавать <svg:defs/> в документе если его нет
   defs = $X '(//svg:defs)[1]'
-  image = xml.xpath('/*/svg:*[1]').map (e)-> do e.clone #TODO ВНЕЗАПНО понял что клонирование происходи не рекурсивно, в общем это дело надо исправить
+  image = xml.xpath('/*/svg:*[1]').map (e)-> e.cloneNode true #TODO ВНЕЗАПНО понял что клонирование происходи не рекурсивно, в общем это дело надо исправить
   id = do Utils.generateID
   image.attr id: id
   defs.append image
