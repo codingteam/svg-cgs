@@ -1,8 +1,9 @@
 
+render = null
+
 wire = null
 
 test_1 =() ->
-  render = $ID 'render'
   resistor1 = new Resistor
     x:10
     y:55
@@ -30,8 +31,9 @@ test_3 = () ->
         x: 10
         y: 30
       $L resister3
-      #resister3.renderTo render
+      resister3.renderTo render
 $R ->
-    $ID("test_1").click -> test_1()
-    $ID("test_2").click -> test_2()
-    $ID("test_3").click -> test_3()
+  render = $ID 'render'
+  $ID("test_1").click -> test_1()
+  $ID("test_2").click -> test_2()
+  $ID("test_3").click -> test_3()
