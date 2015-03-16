@@ -1,5 +1,5 @@
 
-$X.Class.attr = (attrs)-> #TODO протестировать этот метод, а потом перенести в xpath-tools
+$X.Class::attr = (attrs)-> #TODO протестировать этот метод, а потом перенести в xpath-tools
 	for item in @ when item instanceof Element
 		for name, value of attrs
 		  splited = name.split ':'
@@ -17,3 +17,6 @@ $X.Class.attr = (attrs)-> #TODO протестировать этот метод
   		    else
   		      item.removeAttribute name
 	@
+
+$X.Class::getAttr = (attr)->
+  (@constructor.Xpath "@#{attr}", @[0], {type:2})[0]
