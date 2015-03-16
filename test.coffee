@@ -1,4 +1,6 @@
 
+wire = null
+
 test_1 =() ->
   render = $ID 'render'
   resistor1 = new Resistor
@@ -13,9 +15,11 @@ test_1 =() ->
     resistor2
     wire
   ].forEach (widget)-> widget.renderTo render
-  do wire.destroy
-  
+
 test_2 = () ->
+    do wire.destroy
+
+test_3 = () ->
   $XHR.get('img/resister.svg')
     .then (data)->
       (new DOMParser).parseFromString data,"text/xml"
