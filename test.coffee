@@ -31,3 +31,7 @@ test_3 = () ->
         y: 30
       $L resister3
       #resister3.renderTo render
+$R ->
+    $ID("test_1").click -> test_1()
+    $ID("test_2").click -> test_2()
+    $ID("test_3").click -> test_3()
