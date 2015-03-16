@@ -141,12 +141,14 @@ class AbstractDevice extends Base
     
 
 DeviceFromXML = (xml)->
-  xml = $A xml
+  xml = $A [xml]
   #TODO придумать как создавать <svg:defs/> в документе если его нет
   defs = $X '(//svg:defs)[1]'
-  image = xml.xpath('/*/svg:*[1]').map (e)-> e.cloneNode true #TODO ВНЕЗАПНО понял что клонирование происходи не рекурсивно, в общем это дело надо исправить
+  image = $svg 'g'
+  imageContent = xml.xpath('/*/svg:*').map (e)-> e.cloneNode true
   id = do Utils.generateID
   image.attr id: id
+  image.append imageContent
   defs.append image
   nodes = xml.xpath('//*/cgs:node').map (e)->
     x: parseFloat e.getAttribute 'x'
