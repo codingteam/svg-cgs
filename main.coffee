@@ -118,6 +118,9 @@ StreamTypes =
   wire: Stream
 
 class AbstractDevice extends Base
+  @defaults:
+    x: 0
+    y: 0
   constructor: ->
     super
     @nodes = {}

@@ -5,6 +5,7 @@ $X.Class::attr = (attrs)-> #TODO протестировать этот мето�
 		  splited = name.split ':'
 		  if splited.length == 2
 		    [ns, name] = splited
+		    ns = @constructor.XPath.defaults.ns[ns]
 		    try
 		      if value?
 		        item.setAttributeNS ns, name, value
