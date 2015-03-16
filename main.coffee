@@ -135,7 +135,7 @@ class AbstractDevice extends Base
     @
   renderTo: (@place)->
     do @redraw
-    for node of @nodes
+    for nodeName, node of @nodes
       node.renderTo @place
     do @render
     
