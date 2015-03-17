@@ -144,7 +144,7 @@ class AbstractDevice extends Base
     
 
 DeviceFromXML = (xml)->
-  xml = $A [xml]
+  xml = $A xml
   #TODO придумать как создавать <svg:defs/> в документе если его нет
   defs = $X '(//svg:defs)[1]'
   image = $svg 'g'

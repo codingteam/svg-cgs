@@ -1,5 +1,5 @@
 
-$X.Class::attr = (attrs)-> #TODO протестировать этот метод, а потом перенести в xpath-tools
+$X.Class::attr = (attrs)->
 	for item in @ when item instanceof Element
 		for name, value of attrs
 		  splited = name.split ':'
@@ -20,4 +20,13 @@ $X.Class::attr = (attrs)-> #TODO протестировать этот мето�
 	@
 
 $X.Class::getAttr = (attr)->
-  (@constructor.Xpath "@#{attr}", @[0], {type:2})[0]
+  (@constructor.XPath "@#{attr}", @[0], {type:2})[0]
+
+
+$A = (arr...)->
+	result = new $X.Class
+	for val in arr
+	  if $X.Class.isArray val
+		  result.push.apply result, $A val
+	  else  result.push val
+	result
