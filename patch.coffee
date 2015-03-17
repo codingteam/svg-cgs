@@ -26,7 +26,7 @@ $X.Class::getAttr = (attr)->
 $A = (arr...)->
 	result = new $X.Class
 	for val in arr
-	  if $X.Class.isArray val
+	  if [].constructor.isArray val
 		  result.push.apply result, $A val
 	  else  result.push val
 	result
