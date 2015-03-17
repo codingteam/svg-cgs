@@ -20,30 +20,35 @@ test_2 = () ->
     do wire.destroy
 
 test_3 = () ->
-  $XHR.get('img/resister.svg')
-    .then (data)->
-      (new DOMParser).parseFromString data,"text/xml"
-    .then (xml)->
-      Devices.resister = DeviceFromXML xml
+ resisterLoader = 
+   $XHR.get('img/resister.svg')
+     .then (data)->
+       (new DOMParser).parseFromString data,"text/xml"
+     .then (xml)->
+       Devices.resister = DeviceFromXML xml
+ diodeLoader = 
+   $XHR.get('lib-cgs/gost-2.730-73/diode-v2.svg')
+     .then (data)->
+       (new DOMParser).parseFromString data,"text/xml"
+     .then (xml)->
+       Devices.resister = DeviceFromXML xml
+
+	Promise.all([resisterLoader, diodeLoader])
     .then ->
       resister3 = new Devices.resister
-        x: 10
-        y: 30
-      $L resister3
+        x: 80
+        y: 60
       resister3.renderTo render
 
-test_4 = () ->
-  $XHR.get('lib-cgs/gost-2.730-73/diode-v2.svg')
-    .then (data)->
-      (new DOMParser).parseFromString data,"text/xml"
-    .then (xml)->
-      Devices.resister = DeviceFromXML xml
-    .then ->
-      resister4 = new Devices.resister
+      diode1 = new Devices.resister
         x: 10
         y: 30
-      $L resister4
-      resister4.renderTo render
+      resister3.renderTo render
+      
+      wire1 = diode1.nodes.snd.connect resister3.nodes.fst
+      wire1.renderTo render
+
+test_4 = () -> alert "none!"
 
 $R ->
   render = $ID 'render'
