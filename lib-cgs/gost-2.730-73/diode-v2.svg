@@ -1,0 +1,14 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="150mm" height="60mm">
+  <node xmlns="CGS" x="0" y="30" type="wire" name="fst"/>
+  <node xmlns="CGS" x="150" y="30" type="wire" name="snd"/>
+  <desc>Diod</desc>
+  <g fill="white" stroke="black" stroke-width="1pt">
+    <polygon points="50,0 100,30 50,60"/>
+  </g>
+  <g fill="none" stroke="black" stroke-width="1pt" >
+    <line x1="0"  y1="30" x2="150" y2="30" />
+    <line x1="100" y1="0" x2="100" y2="60" />
+  </g>
+  
+</svg>
