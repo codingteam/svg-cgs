@@ -28,6 +28,6 @@ $A = (arr...)->
 	for val in arr
 	  if [].constructor.isArray val
 	  	for subval in val
-	  		result.push.apply $A subval
+	  		result.push ($A subval)...
 	  else  result.push val
 	result
