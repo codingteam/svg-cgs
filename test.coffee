@@ -36,14 +36,14 @@ test_3 = () ->
 	Promise.all([resisterLoader, diodeLoader])
     .then ->
       resister3 = new Devices.resister
-        x: 80
+        x: 200
         y: 60
       resister3.renderTo render
 
       diode1 = new Devices.diode
-        x: 10
+        x: 30
         y: 30
-      resister3.renderTo render
+      diode1.renderTo render
       
       wire1 = diode1.nodes.snd.connect resister3.nodes.fst
       wire1.renderTo render
