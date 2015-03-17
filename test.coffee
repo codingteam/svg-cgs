@@ -21,7 +21,7 @@ test_2 = () ->
 
 test_3 = () ->
  resisterLoader = 
-   $XHR.get('img/resister.svg')
+   $XHR.get('lib-cgs/gost-2.728-74/резистор-постоянный.svg')
      .then (data)->
        (new DOMParser).parseFromString data,"text/xml"
      .then (xml)->
