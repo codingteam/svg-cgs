@@ -1,6 +1,5 @@
 
 render = null
-
 wire = null
 
 test_1 =() ->
@@ -32,8 +31,12 @@ test_3 = () ->
         y: 30
       $L resister3
       resister3.renderTo render
+
+test_4 = () ->
+
 $R ->
   render = $ID 'render'
   $ID("test_1").click -> test_1()
   $ID("test_2").click -> test_2()
   $ID("test_3").click -> test_3()
+  $ID("test_4").click -> test_4()

@@ -1,4 +1,6 @@
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" width="20mm" height="10mm">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" width="200mm" height="100mm">
+  <rect width="200mm" height="100mm" style="fill:rgb(200,200,200);stroke-width:3;stroke:rgb(0,0,0)" />
+  
 </svg>
