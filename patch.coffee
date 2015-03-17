@@ -27,6 +27,7 @@ $A = (arr...)->
 	result = new $X.Class
 	for val in arr
 	  if [].constructor.isArray val
-		  result.push.apply result, $A val
+	  	for subval in val
+	  		result.push.apply $A subval
 	  else  result.push val
 	result
