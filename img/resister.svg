@@ -1,14 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" width="20mm" height="10mm">
-  <node xmlns="CGS" x="0" y="5mm" type="wire" name="fst"/>
-  <node xmlns="CGS" x="20mm" y="5mm" type="wire" name="snd"/>
+  <node xmlns="CGS" x="0" y="5" type="wire" name="fst"/>
+  <node xmlns="CGS" x="20" y="5" type="wire" name="snd"/>
   <desc>Resistor</desc>
-  <g fill="white" stroke="black" stroke-width="1pt">
-    <rect x="5mm" y="3mm" width="10mm" height="4mm" />
+  <g fill="white" stroke="black" stroke-width="1">
+    <rect x="5" y="3" width="10" height="4" />
   </g>
-  <g fill="none" stroke="black" stroke-width="1pt" >
-    <line x1="0mm"  y1="5mm" x2="5mm"  y2="5mm" />
-    <line x1="15mm" y1="5mm" x2="20mm" y2="5mm" />
+  <g fill="none" stroke="black" stroke-width="1" >
+    <line x1="0"  y1="5" x2="5"  y2="5" />
+    <line x1="15" y1="5" x2="20" y2="5" />
   </g>
 </svg>
