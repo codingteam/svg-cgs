@@ -31,7 +31,7 @@ test_3 = () ->
      .then (data)->
        (new DOMParser).parseFromString data,"text/xml"
      .then (xml)->
-       Devices.resister = DeviceFromXML xml
+       Devices.diode = DeviceFromXML xml
 
 	Promise.all([resisterLoader, diodeLoader])
     .then ->
@@ -40,7 +40,7 @@ test_3 = () ->
         y: 60
       resister3.renderTo render
 
-      diode1 = new Devices.resister
+      diode1 = new Devices.diode
         x: 10
         y: 30
       resister3.renderTo render
