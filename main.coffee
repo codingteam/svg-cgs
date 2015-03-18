@@ -75,6 +75,7 @@ class Stream extends Base
     @snd.streams = @snd.streams.filter (stream)=> stream == @
     @place[0].removeChild @body[0]
     @destroyed = true
+    @emit 'destroy'
     @
   redraw:->
     @line.attr
@@ -141,6 +142,11 @@ class AbstractDevice extends Base
     for nodeName, node of @nodes
       node.renderTo @place
     do @render
+  destroy: ->
+  	for node in @nodes
+  		do node.destroy
+  	@emit 'destroy'
+  	@
     
 
 DeviceFromXML = (xml)->
@@ -168,3 +174,15 @@ DeviceFromXML = (xml)->
       for node in nodes
         @nodes[node.name].x = @x + node.x
         @nodes[node.name].y = @y + node.y
+
+
+class Scheme extends Base
+	constructor: (config, @place)->
+		@children = []
+	add: (widgets...)->
+		widgets.forEach (widget)=>
+			widget.renderTo @place
+			widget.on 'destroy', =>
+				@children = @children.filter (testingWidget)=>
+					testingWidget != widget
+		@children.push widgets...
