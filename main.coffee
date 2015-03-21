@@ -204,7 +204,8 @@ class SchemeEditor extends Scheme
 			widget.on 'destroy', =>
 				@children = @children.filter (testingWidget)=>
 					testingWidget != widget
-		@children.push widgets...
+			do widget.setDragable
+		#@children.push widgets...
 	del: (widget)->
 		@children = @children.filter (testingWidget)=>
 			testingWidget != widget
