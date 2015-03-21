@@ -119,6 +119,7 @@ StreamTypes =
   wire: Stream
 
 class AbstractDevice extends Base
+  eventList = 'click dblclick mousedown mouseup mouseover mousemove mouseout'.split ' '
   @defaults:
     x: 0
     y: 0
@@ -130,6 +131,9 @@ class AbstractDevice extends Base
     @body.attr
       x: @x
       y: @y
+    for event in eventList
+    	@body.on event, =>
+    		@emit arguments...
   redraw: ->
     @body.attr 'xlink:href': "##{@ref}"
     do @apdateNodes
@@ -175,8 +179,9 @@ DeviceFromXML = (xml)->
         @nodes[node.name].x = @x + node.x
         @nodes[node.name].y = @y + node.y
 
-
 class Scheme extends Base
+
+class SchemeViewer extends Scheme
 	constructor: (config, @place)->
 		@children = []
 	add: (widgets...)->
@@ -186,3 +191,5 @@ class Scheme extends Base
 				@children = @children.filter (testingWidget)=>
 					testingWidget != widget
 		@children.push widgets...
+
+class SchemeEditor extends Scheme
