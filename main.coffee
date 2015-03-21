@@ -180,16 +180,31 @@ DeviceFromXML = (xml)->
         @nodes[node.name].y = @y + node.y
 
 class Scheme extends Base
+	constructor: (config, @place)->
+		super
+		@children = []
 
 class SchemeViewer extends Scheme
-	constructor: (config, @place)->
-		@children = []
 	add: (widgets...)->
 		widgets.forEach (widget)=>
 			widget.renderTo @place
+			@children.push widget
+			widget.on 'destroy', =>
+				@del widget
+		@children.push widgets...
+	del: (widget)->
+		@children = @children.filter (testingWidget)=>
+			testingWidget != widget
+
+class SchemeEditor extends Scheme
+	add: (widgets...)->
+		widgets.forEach (widget)=>
+			widget.renderTo @place
+			@children.push widget
 			widget.on 'destroy', =>
 				@children = @children.filter (testingWidget)=>
 					testingWidget != widget
 		@children.push widgets...
-
-class SchemeEditor extends Scheme
+	del: (widget)->
+		@children = @children.filter (testingWidget)=>
+			testingWidget != widget
