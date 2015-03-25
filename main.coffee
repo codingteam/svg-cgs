@@ -184,6 +184,18 @@ class Scheme extends Base
 		super
 		@children = []
 
+class SubScheme extends Scheme
+
+class Coil extends SubCcheme
+	@defaults = Utils.inherit SubScheme.defaults
+		times: 1
+	constructor: ->
+		super
+		Spiral = Devices.coilSpiral
+		for i in [0..@times]
+			spiral =  new Spiral
+			#TODO придумать как порасставлять координаты каждого витка
+
 class SchemeViewer extends Scheme
 	add: (widgets...)->
 		widgets.forEach (widget)=>

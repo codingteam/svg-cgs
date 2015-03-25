@@ -32,6 +32,7 @@ test_3 = () ->
        (new DOMParser).parseFromString data,"text/xml"
      .then (xml)->
        Devices.diode = DeviceFromXML xml
+       Devices.coilSpiral = Devices.diode
 
 	Promise.all([resisterLoader, diodeLoader])
     .then ->
