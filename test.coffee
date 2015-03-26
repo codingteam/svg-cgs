@@ -1,25 +1,9 @@
 
-render = null
-wire = null
-
-test_1 =() ->
-  resistor1 = new Resistor
-    x:10
-    y:55
-  resistor2 = new Resistor
-    x:50
-    y:25
-  wire = resistor1.nodes.snd.connect resistor2.nodes.fst
-  [
-    resistor1
-    resistor2
-    wire
-  ].forEach (widget)-> widget.renderTo render
-
-test_2 = () ->
+test_1 = -> alert "none!"
+test_2 = ->
     do wire.destroy
 
-test_3 = () ->
+test_3 = ->
  resisterLoader = 
    $XHR.get('lib-cgs/gost-2.728-74/резистор-постоянный.svg')
      .then (data)->
@@ -49,11 +33,11 @@ test_3 = () ->
       wire1 = diode1.nodes.snd.connect resister3.nodes.fst
       wire1.renderTo render
 
-test_4 = () -> alert "none!"
+test_4 = -> alert "none!"
 
 $R ->
   render = $ID 'render'
-  $ID("test_1").click -> test_1()
-  $ID("test_2").click -> test_2()
-  $ID("test_3").click -> test_3()
-  $ID("test_4").click -> test_4()
+  $ID("test_1").click test_1
+  $ID("test_2").click test_2
+  $ID("test_3").click test_3
+  $ID("test_4").click test_4

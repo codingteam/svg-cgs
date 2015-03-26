@@ -1,56 +1,6 @@
 
 $X.defaults.ns.cgs = "CGS" #FEATURE здесь задаются префиксы пространств имён
 
-class Resistor extends Base
-  @defaults:
-    x: 0
-    y: 0
-  constructor: ->
-    super
-    @body = $svg 'g'
-    @body.attr
-      fill: 'red'
-      stroke: 'black'
-      'stroke-width': 1
-      transform: "translate(#{@x} #{@y})"
-    rect = $svg 'rect'
-    rect.attr
-      x: 5
-      y: 3
-      width: 10
-      height: 4
-    line0 = $svg 'line'
-    line0.attr
-      x1: 0
-      y1: 5
-      x2: 5
-      y2: 5
-    line1 = $svg 'line'
-    line1.attr
-      x1: 15
-      y1: 5
-      x2: 20
-      y2: 5
-    @body.append rect, line0, line1
-    @nodes =
-      fst: new StreamNode {}, Stream
-      snd: new StreamNode {}, Stream
-  redraw: ->
-    @nodes.fst.x = @x
-    @nodes.fst.y = @y + 5
-    @nodes.snd.x = @x + 20
-    @nodes.snd.y = @y + 5
-    @
-  render: ->
-    @place.append @body
-    @
-  renderTo: (@place)->
-    do @redraw
-    @nodes.fst.renderTo @place
-    @nodes.snd.renderTo @place
-    do @render
-
- 
 class Stream extends Base
   @Erorr: class
   @getDefault: ->#FEATURE конструируируем объект не через new
@@ -192,9 +142,11 @@ class Coil extends SubCcheme
 	constructor: ->
 		super
 		Spiral = Devices.coilSpiral
-		for i in [0..@times]
+		spirals = for i in [0..@times]
 			spiral =  new Spiral
-			#TODO придумать как порасставлять координаты каждого витка
+		cursor = spirals.nodes.fst
+		
+			#TODO придумать как пораставлять координаты каждого витка
 
 class SchemeViewer extends Scheme
 	add: (widgets...)->
