@@ -156,15 +156,15 @@ class Coil extends SubScheme
 			delta =
 				x: @spirals[i].nodes.snd.x - @spirals[i].nodes.fst.x
 				y: @spirals[i].nodes.snd.y - @spirals[i].nodes.fst.y
-			@spirals[i].nodes.fst = spirals[i - 1].nodes.snd
+			@spirals[i].nodes.fst = @spirals[i - 1].nodes.snd
 			@spirals[i].x = @spirals[i - 1].x + delta.x
 			@spirals[i].y = @spirals[i - 1].y + delta.y
 			do @spirals[i].render
-		renderTo (@place)->
-			for spiral in @spirals
-				spiral.renderTo @place
-			do @render
-	@
+		@
+	renderTo (@place)->
+		for spiral in @spirals
+			spiral.renderTo @place
+		do @render
  
 class SchemeViewer extends Scheme
 	add: (widgets...)->

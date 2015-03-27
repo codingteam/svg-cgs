@@ -5,7 +5,7 @@ Loader =
 		coilSpiral: "lib-cgs/gost-2.730-73/diode-v2.svg"
 	load: (names...)->
 		Promise.all names.map (name)=>
-			if @devices[name]?
+			if Devices[name]?
 				do Promise.resolve
 			else
 				$XHR.get(@devices[name])
