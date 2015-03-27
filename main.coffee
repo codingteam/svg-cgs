@@ -138,8 +138,9 @@ class Scheme extends Base
 class SubScheme extends Scheme
 
 class Coil extends SubScheme
-	@defaults = Utils.inherit SubScheme.defaults
+	@defaults = Utils.inherit SubScheme.defaults, {
 		times: 1
+	}
 	constructor: ->
 		super
 		Spiral = Devices.coilSpiral
