@@ -30,3 +30,4 @@ clean:
 	rm -f patch.js
 	rm -f main.js
 	rm -f test.js
+	rm -f loader.js
