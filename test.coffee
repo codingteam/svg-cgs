@@ -1,3 +1,4 @@
+render = null
 
 test_1 = -> alert "none!"
 test_2 = ->
@@ -33,7 +34,10 @@ test_3 = ->
       wire1 = diode1.nodes.snd.connect resister3.nodes.fst
       wire1.renderTo render
 
-test_4 = -> alert "none!"
+test_4 = -> 
+	Loader.load('coilSpiral').then ->
+		coil = new Coil times: 3
+		coil.renderTo render
 
 $R ->
   render = $ID 'render'

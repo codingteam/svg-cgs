@@ -142,12 +142,28 @@ class Coil extends SubCcheme
 	constructor: ->
 		super
 		Spiral = Devices.coilSpiral
-		spirals = for i in [0..@times]
+		@spirals = for i in [0..@times]
 			spiral =  new Spiral
-		cursor = spirals.nodes.fst
-		
-			#TODO придумать как пораставлять координаты каждого витка
-
+		do @render
+		@nodes = [@spirals[0].fst] #WTF тут вообщето должен быть объект с именоваными полями, но тут предпочтительней пронумерованые, потому сейчас массив
+		@nodes.push (spiral.snd for spiral in @spirals)...
+	render: ->
+		@spirals[0].x = @x
+		@spirals[0].y = @y
+		for i in [1..@times]
+			delta =
+				x: @spirals[i].nodes.snd.x - @spirals[i].nodes.fst.x
+				y: @spirals[i].nodes.snd.y - @spirals[i].nodes.fst.y
+			@spirals[i].nodes.fst = spirals[i - 1].nodes.snd
+			@spirals[i].x = @spirals[i - 1].x + delta.x
+			@spirals[i].y = @spirals[i - 1].y + delta.y
+			do @spirals[i].render
+		renderTo (@place)->
+			for spiral in @spirals
+				spiral.renderTo @place
+			do @render
+	@
+ 
 class SchemeViewer extends Scheme
 	add: (widgets...)->
 		widgets.forEach (widget)=>

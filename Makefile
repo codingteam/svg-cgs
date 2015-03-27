@@ -1,4 +1,4 @@
-all: unilib patchlib mainlib testlib
+all: unilib patchlib mainlib testlib loader
 
 unilib:
 	cat svgwm/test.css test.css > all.css
@@ -20,6 +20,9 @@ mainlib:
 
 testlib:
 	coffee -c --bare test.coffee
+	
+loader:
+	coffee -c --bare loader.coffee
 
 clean:
 	rm -f all.coffee
