@@ -130,13 +130,14 @@ DeviceFromXML = (xml)->
         @nodes[node.name].y = @y + node.y
 
 class Scheme extends Base
+	@defaults = {}
 	constructor: (config, @place)->
 		super
 		@children = []
 
 class SubScheme extends Scheme
 
-class Coil extends SubCcheme
+class Coil extends SubScheme
 	@defaults = Utils.inherit SubScheme.defaults
 		times: 1
 	constructor: ->
