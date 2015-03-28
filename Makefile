@@ -1,8 +1,9 @@
-all: unilib patchlib mainlib testlib loader
+all: all.css all.js patch.js main.js test.js loader.js
 
-unilib:
+all.css: test.css
 	cat svgwm/test.css test.css > all.css
 	autoprefixer all.css
+all.js:
 	cat svgwm/xpath-tools/core.coffee \
 	svgwm/xpath-tools/events.coffee \
 	svgwm/xpath-tools/utils.coffee \
@@ -12,16 +13,16 @@ unilib:
 	> all.coffee
 	coffee -c --bare all.coffee
 
-patchlib:
+patch.js: patch.coffee
 	coffee -c --bare patch.coffee
 
-mainlib:
+main.js: main.coffee
 	coffee -c --bare main.coffee
 
-testlib:
+test.js: test.coffee
 	coffee -c --bare test.coffee
 	
-loader:
+loader.js: loader.coffee
 	coffee -c --bare loader.coffee
 
 clean:
