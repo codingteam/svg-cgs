@@ -6,14 +6,6 @@
 
 .floo
 
-all.coffee
-
-all.css
-
-all.js
-main.js
-patch.js
-test.js
-loader.js
-
 /node_modules/
+/build/
+/dist/
