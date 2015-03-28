@@ -13,4 +13,3 @@ Loader =
        			(new DOMParser).parseFromString data,"text/xml"
      			.then (xml)->
       			 Devices[name] = DeviceFromXML xml
-		

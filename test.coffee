@@ -1,9 +1,7 @@
 render = null
 
 test_1 = -> alert "none!"
-test_2 = ->
-    do wire.destroy
-
+test_2 = -> alert "none!"
 test_3 = ->
  resisterLoader = 
    $XHR.get('lib-cgs/gost-2.728-74/резистор-постоянный.svg')
@@ -36,8 +34,9 @@ test_3 = ->
 
 test_4 = -> 
 	Loader.load('coilSpiral').then ->
-		coil = new Coil times: 3
-		coil.renderTo render
+		coil = new Coil({times: 3}, render)
+		window.coil = coil
+		#coil.renderTo render
 
 $R ->
   render = $ID 'render'

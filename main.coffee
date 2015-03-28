@@ -161,7 +161,7 @@ class Coil extends SubScheme
 			@spirals[i].y = @spirals[i - 1].y + delta.y
 			do @spirals[i].render
 		@
-	renderTo (@place)->
+	renderTo: (@place)->
 		for spiral in @spirals
 			spiral.renderTo @place
 		do @render
