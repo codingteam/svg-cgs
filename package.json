@@ -11,9 +11,6 @@
     "grunt": "^0.4.5",
     "grunt-contrib-coffee": "^0.13.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Lotguero/svg-cgs.git"
