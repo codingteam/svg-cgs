@@ -1,0 +1,30 @@
+{
+  "name": "svg-cgs",
+  "version": "0.0.1",
+  "description": "Conditional Graphical Symbols",
+  "main": "all.js",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.13.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.13.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lotguero/svg-cgs.git"
+  },
+  "keywords": [
+    "cad"
+  ],
+  "author": "Lotguero",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lotguero/svg-cgs/issues"
+  },
+  "homepage": "https://github.com/Lotguero/svg-cgs"
+}

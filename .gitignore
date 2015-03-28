@@ -15,3 +15,5 @@ main.js
 patch.js
 test.js
 loader.js
+
+/node_modules/
