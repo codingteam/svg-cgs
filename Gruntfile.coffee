@@ -2,7 +2,7 @@ module.exports = (grunt) ->
   grunt.initConfig
     concat:
       all:
-        src: ['svgwm/test.css', 'test.css']
+        src: ['node_modules/svgwm/test.css', 'test.css']
         dest: 'build/all.css'
     autoprefixer:
       all:
@@ -14,7 +14,7 @@ module.exports = (grunt) ->
           join: true
           bare: true
         files:
-          'dist/all.js': ['svgwm/xpath-tools/*.coffee', 'svgwm/main.coffee']
+          'dist/all.js': ['node_modules/xpath-tools/*.coffee', 'node_modules/svgwm/main.coffee']
           'dist/patch.js': 'patch.coffee'
           'dist/main.js': 'main.coffee'
           'dist/test.js': 'test.coffee'
