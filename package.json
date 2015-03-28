@@ -10,7 +10,7 @@
     "grunt-contrib-coffee": "^0.13.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-copy": "^0.8.0",
-    "xpath-tools": "git+https://github.com/ForNeVeR/xpath-tools.git#feature/package",
+    "xpath-tools": "git+https://github.com/Svoloch/xpath-tools.git",
     "svgwm": "git+https://github.com/Svoloch/svgwm.git"
   },
   "scripts": {
