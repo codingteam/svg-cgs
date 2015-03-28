@@ -1,4 +1,4 @@
-svg-cgs
+svg-cgs [![Build Status](https://travis-ci.org/codingteam/svg-cgs.svg?branch=master)](https://travis-ci.org/codingteam/svg-cgs)
 =======
 
 Building
