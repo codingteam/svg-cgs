@@ -36,7 +36,7 @@ test_4 = ->
 	Loader.load('coilSpiral').then ->
 		coil = new Coil({times: 3}, render)
 		window.coil = coil
-		#coil.renderTo render
+		coil.renderTo render
 
 $R ->
   render = $ID 'render'
