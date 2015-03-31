@@ -86,13 +86,17 @@ class AbstractDevice extends Base
 	redraw: ->
 		@body.attr 'xlink:href': "##{@ref}"
 		do @apdateNodes
+		for nodeName, node of @nodes
+			do node.redraw
 		@body.attr
 			x: @x
 			y: @y
 		@
 	render: ->
 		@place.append @body
-		@
+		for nodeName, node of @nodes
+			do node.render
+		do @redraw
 	renderTo: (@place)->
 		do @redraw
 		for nodeName, node of @nodes
@@ -147,14 +151,13 @@ class Coil extends SubScheme
 	constructor: ->
 		super
 		Spiral = Devices.coilSpiral
-		@spirals = for i in [0..@times]
+		@spirals = for i in [0...@times]
 			spiral =	new Spiral
-			spiral.place = @place
 			spiral
-		@renderTo @place
+		#@renderTo @place
 		@nodes = [@spirals[0].fst] #WTF тут вообщето должен быть объект с именоваными полями, но тут предпочтительней пронумерованые, потому сейчас массив
 		@nodes.push (spiral.snd for spiral in @spirals)...
-	render: ->
+	redraw: ->
 		@spirals[0].x = @x
 		@spirals[0].y = @y
 		for i in [1...@times]
@@ -164,11 +167,13 @@ class Coil extends SubScheme
 			@spirals[i].nodes.fst = @spirals[i - 1].nodes.snd
 			@spirals[i].x = @spirals[i - 1].x + delta.x
 			@spirals[i].y = @spirals[i - 1].y + delta.y
-			do @spirals[i].render
+			do @spirals[i].redraw
 		@
-	renderTo: (@place)->
+	render: ->
 		for spiral in @spirals
 			spiral.renderTo @place
+		do @redraw
+	renderTo: (@place)->
 		do @render
  
 class SchemeViewer extends Scheme
@@ -187,7 +192,6 @@ class SchemeEditor extends Scheme
 	add: (widgets...)->
 		widgets.forEach (widget)=>
 			widget.renderTo @place
-			#@children.push widget
 			widget.on 'destroy', =>
 				@children = @children.filter (testingWidget)=>
 					testingWidget != widget

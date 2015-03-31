@@ -34,7 +34,7 @@ test_3 = ->
 
 test_4 = -> 
 	Loader.load('coilSpiral').then ->
-		coil = new Coil({times: 3}, render)
+		coil = new Coil({times: 3})
 		window.coil = coil
 		coil.renderTo render
 
