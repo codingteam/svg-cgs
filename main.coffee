@@ -98,12 +98,12 @@ class AbstractDevice extends Base
 			do node.render
 		do @redraw
 	renderTo: (@place)->
-		do @redraw
+		#do @redraw
 		for nodeName, node of @nodes
 			node.renderTo @place
 		do @render
 	destroy: ->
-		for node in @nodes
+		for nodeName, node of @nodes
 			do node.destroy
 		@emit 'destroy'
 		@
@@ -153,11 +153,23 @@ class Coil extends SubScheme
 		Spiral = Devices.coilSpiral
 		@spirals = for i in [0...@times]
 			spiral =	new Spiral
+			do spiral.apdateNodes
 			spiral
-		#@renderTo @place
+		do @updateSubitems
 		@nodes = [@spirals[0].fst] #WTF тут вообщето должен быть объект с именоваными полями, но тут предпочтительней пронумерованые, потому сейчас массив
 		@nodes.push (spiral.snd for spiral in @spirals)...
 	redraw: ->
+		do @updateSubitems
+		for spiral in @spirals
+			do spiral.redraw
+		@
+	render: ->
+		for spiral in @spirals
+			spiral.renderTo @place
+		do @redraw
+	renderTo: (@place)->
+		do @render
+	updateSubitems: ->
 		@spirals[0].x = @x
 		@spirals[0].y = @y
 		for i in [1...@times]
@@ -167,14 +179,7 @@ class Coil extends SubScheme
 			@spirals[i].nodes.fst = @spirals[i - 1].nodes.snd
 			@spirals[i].x = @spirals[i - 1].x + delta.x
 			@spirals[i].y = @spirals[i - 1].y + delta.y
-			do @spirals[i].redraw
 		@
-	render: ->
-		for spiral in @spirals
-			spiral.renderTo @place
-		do @redraw
-	renderTo: (@place)->
-		do @render
  
 class SchemeViewer extends Scheme
 	add: (widgets...)->
