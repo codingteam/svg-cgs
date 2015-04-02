@@ -4,7 +4,10 @@
   <desc></desc>
   <node xmlns="CGS" x="40" y="0" type="wire" name="fst"/>
   <node xmlns="CGS" x="40" y="140" type="wire" name="mid"/>
-  <line x1="40" y1="0" x2="40" y2="40"  />
-  <line x1="0" y1="40" x2="40" y2="100"  />
-  <line x1="40" y1="100" x2="40" y2="140"  />
+  <line x1="40" y1="0" x2="40" y2="40"
+        stroke="black"/>
+  <line x1="0" y1="40" x2="40" y2="100"
+        stroke="black"/>
+  <line x1="40" y1="100" x2="40" y2="140"
+        stroke="black"/>
 </svg>
