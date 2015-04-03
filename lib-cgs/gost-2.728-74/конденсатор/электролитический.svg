@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="145" height="80">
+  <node xmlns="CGS" x="0" y="40" type="wire" name="fst"/>
+  <node xmlns="CGS" x="130" y="40" type="wire" name="snd"/>
+  <desc>Condensator</desc>
+  <g fill="none" stroke="black" stroke-width="1" >
+    <line x1="0" y1="40"  x2="50" y2="40" />
+    <line x1="95"  y1="40" x2="145" y2="40" />
+  </g>
+  <g fill="white" stroke="black" stroke-width="1">
+    <rect x="50" y="0" width="15" height="80" />
+    <rect x="80" y="0" width="15" height="80" />
+  </g>
+</svg>
